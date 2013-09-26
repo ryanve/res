@@ -1,7 +1,7 @@
 {
     "name": "res",
     "description": "Device resolution detection module",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "homepage": "https://github.com/ryanve/res",
     "author": "Ryan Van Etten",
     "keywords": ["device", "resolution", "detection", "ender"],

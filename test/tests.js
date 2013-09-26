@@ -14,6 +14,11 @@
         var n = this.remark = res.dppx();
         return 0 < n ? true === res.dppx(n) && false === res.dppx(n+precision) : 0 === n;
     }});
+    
+    aok({id:'dppx', test:function() {
+        var n = this.remark = res.dppx();
+        return 0 < n ? true === res.dppx(n) && false === res.dppx(n+precision) : 0 === n;
+    }});
 
     aok({id:'dpcm', test:function() {
         var n = this.remark = res.dpcm();

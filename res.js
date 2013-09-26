@@ -1,5 +1,5 @@
 /*!
- * res 0.1.0+201309181754
+ * res 0.1.1+201309260244
  * https://github.com/ryanve/res
  * MIT License 2013 Ryan Van Etten
  */
@@ -8,26 +8,37 @@
     typeof module != 'undefined' && module['exports'] ? module['exports'] = make() : root[name] = make();
 }(this, 'res', function() {
 
+    // airve.com/mq/#mq-resolution
+    // dev.w3.org/csswg/mediaqueries4/#resolution
     // w3.org/TR/css3-values/#absolute-lengths
     // w3.org/TR/css3-values/#resolution
 
-    var win = typeof window != 'undefined' && window
-      , matchMedia = win['matchMedia'] || win['msMatchMedia']
-      , mq = matchMedia ? function(q) {
-            return !!matchMedia.call(win, q)['matches'];
+    var pxPerIn = 96
+      , pxPerCm = 2.54/pxPerIn
+      , win = typeof window != 'undefined' && window
+      , scr = typeof screen != 'undefined' && screen
+      , join = [].join
+      , matchMedia = win['matchMedia']
+      , hasFeature = matchMedia ? function() {
+            return !!matchMedia.call(win, '(' + join.call(arguments, '') + ')')['matches'];
         } : function() {
             return false;
         }
-      , winDppx = win['devicePixelRatio'] // Webkit (Chrome/Android/Safari), Opera (Presto 2.8+), FF 18+
-      , useDppx = (winDppx = 0 < winDppx ? +winDppx : 0) ? winDppx : matchMedia ? (function(test) {
-            // Fallback approximator runs once and memoizes
+      , someApply = function(stack, fn, scope) {
+            for (var i = 0, l = stack.length; i < l;)
+                if (fn.apply(scope, stack[i++])) return true;
+            return false;
+        }
+        // Browser support
+        // - devicePixelRatio: Webkit (Chrome/Android/Safari), Opera (Presto 2.8+), FF 18+
+        // - logicalXDPI/logicalYDPI: IE6+
+        // The fallback may be overkill. Assuming `1` when unavail. would probably suffice.
+      , winDppx = +win['devicePixelRatio'] || Math.sqrt(scr['logicalXDPI']*scr['logicalYDPI'])/pxPerIn || 0
+      , useDppx = winDppx || !matchMedia ? winDppx : (function(test) {
             for (var approx, n = 41; n--;)
                 if (test(approx = n/20)) break;
             return approx;
-        }(dppx)) : 0
-      , pxPerIn = 96
-      , pxPerCm = 2.54/pxPerIn;
-    
+        }(dppx));
     
     /**
      * Get or test resolution in "dppx" units. (a.k.a. device-pixel-ratio)
@@ -38,9 +49,10 @@
         if (null == min) return useDppx;
         if (min !== min) return false;
         if (winDppx) return winDppx >= min;
-        // Match via dpi because it has older browser support than dppx
-        // browserstack.com/screenshots/01d2869b789e45a61ee9225bdab15039cb6e4d71
-        return mq('(min-resolution:' + min*pxPerIn + 'dpi)');
+        return someApply([
+            ['min--moz-device-pixel-ratio:', min] // Use for FF 15- (See FF 16/18 release notes)
+          , ['min-resolution:', min*pxPerIn, 'dpi'] // dpi queries are older than dppx
+        ], hasFeature);
     }
 
     /**
