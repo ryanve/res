@@ -2,6 +2,10 @@
 
 <b>res</b> is a cross-browser device resolution detection module. It uses `window.devicePixelRatio` where available and otherwise uses fallback techniques.
 
+<pre>
+<code>$ <a href="https://npmjs.org/package/res">npm install res</a></code>
+</pre>
+
 ## API
 
 ### Methods
@@ -45,6 +49,17 @@ if (res.dpi(120)) {
 } else {
     // Resolution is <120dpi
 }
+```
+
+## Developers
+
+### Contribute
+
+Make edits in the [`/src`](./src) dir.
+
+```
+$ npm install
+$ grunt jshint:src
 ```
 
 ## Compatibility
