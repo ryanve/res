@@ -3,6 +3,7 @@
     "description": "Device resolution detection module",
     "version": "0.1.2",
     "homepage": "https://github.com/ryanve/res",
+    "license": "MIT",
     "author": "Ryan Van Etten",
     "keywords": ["device", "resolution", "detection", "ender"],
     "main": "./res.js",
