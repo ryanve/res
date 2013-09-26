@@ -1,5 +1,5 @@
 /*!
- * res 0.1.1+201309260244
+ * res 0.1.2+201309260415
  * https://github.com/ryanve/res
  * MIT License 2013 Ryan Van Etten
  */
