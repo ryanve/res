@@ -8,7 +8,7 @@
 
 ## API
 
-### Methods
+### <span id="api_methods">Methods</span>
 
 #### @return `number`|`boolean`
 
@@ -16,7 +16,7 @@
 - `res.dpcm(min?)` - Get or test resolution in [dpcm](http://www.w3.org/TR/css3-values/#dpcm) units.
 - `res.dppx(min?)` - Get or test resolution in [dppx](http://www.w3.org/TR/css3-values/#dppx) units <b>a.k.a.</b> device-pixel-ratio.
 
-### Usage
+### <span id="usage">Usage</span>
 
 #### Examples
 
