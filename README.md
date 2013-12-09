@@ -1,5 +1,5 @@
 # [res](../../)
-#### <b>res</b> is a cross-browser [device resolution](http://ryanve.com/lab/resolution/) detection <a href="https://npmjs.org/package/res">module</a>. It uses `window.devicePixelRatio` where available and otherwise uses fallback techniques.
+#### <b>res</b> is a cross-browser [device resolution](http://ryanve.com/lab/resolution/) detection <a href="https://npmjs.org/package/res">module</a>. It uses `devicePixelRatio` where available and otherwise uses fallback techniques.
 
 ```sh
 $ npm install res
