@@ -82,8 +82,11 @@ if (res.dpi(120)) {
 **Methods return `0`|`false` where undetectable.**
 
 ## Related resources
+- [CSS4 resolution](http://dev.w3.org/csswg/mediaqueries4/#resolution)
+- [CSS3 resolution](http://w3.org/TR/css3-values/#resolution) and [units](http://w3.org/TR/css3-values/#absolute-lengths)
 - [Resolution lab](http://ryanve.com/lab/resolution/)
-- [actual](https://github.com/ryanve/actual)
+- [Demo media queries](http://airve.com/mq/#mq-resolution)
+- [ryanve/actual](https://github.com/ryanve/actual)
 
 ## License
 [MIT](res.js#L4)

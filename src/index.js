@@ -3,11 +3,6 @@
   else root[name] = make();
 }(this, 'res', function() {
 
-  // airve.com/mq/#mq-resolution
-  // dev.w3.org/csswg/mediaqueries4/#resolution
-  // w3.org/TR/css3-values/#absolute-lengths
-  // w3.org/TR/css3-values/#resolution
-
   var pxPerIn = 96
     , pxPerCm = 2.54/pxPerIn
     , win = typeof window != 'undefined' && window
