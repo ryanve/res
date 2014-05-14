@@ -1,66 +1,38 @@
 !function(root, name, make) {
-  if (typeof module != 'undefined' && module.exports) module.exports = make();
-  else root[name] = make();
-}(this, 'res', function() {
+  if (typeof module != 'undefined' && module.exports) module.exports = make(require)
+  else root[name] = make(function(id) { return root[id] })
+}(this, 'res', function(require) {
 
-  var pxPerIn = 96
-    , pxPerCm = 2.54/pxPerIn
-    , win = typeof window != 'undefined' && window
-    , scr = typeof screen != 'undefined' && screen
-    , join = [].join
-    , matchMedia = win.matchMedia
-    , hasFeature = matchMedia ? function() {
-        return !!matchMedia.call(win, '(' + join.call(arguments, '') + ')').matches;
-      } : function() {
-        return false;
-      }
-    , someApply = function(stack, fn, scope) {
-        for (var i = 0, l = stack.length; i < l;)
-          if (fn.apply(scope, stack[i++])) return true;
-        return false;
-      }
-    // Browser support
-    // - devicePixelRatio: Webkit (Chrome/Android/Safari), Opera (Presto 2.8+), FF 18+
-    // - logicalXDPI/logicalYDPI: IE6+
-    // The fallback may be overkill. Assuming `1` when unavail. would probably suffice.
-    , winDppx = +win.devicePixelRatio || Math.sqrt(scr.logicalXDPI*scr.logicalYDPI)/pxPerIn || 0
-    , useDppx = winDppx || !matchMedia ? winDppx : (function(test) {
-      for (var approx, n = 41; n--;) if (test(approx = n/20)) break;
-      return approx;
-    }(dppx));
-  
+  var one = {'dppx':1, 'dpi':96, 'dpcm':96/2.54}
+
   /**
-   * Get or test resolution in "dppx" units. (a.k.a. device-pixel-ratio)
-   * @param {number=} min  optional minimum value to test for
-   * @return {number|boolean}
+   * @param {string} unit CSS resolution unit like "dppx", "dpi", or "dpcm"
+   * @return {number} as measured by matchMedia by github.com/ryanve/actual
    */
-  function dppx(min) {
-    if (null == min) return useDppx;
-    if (min !== min) return false;
-    if (winDppx) return winDppx >= min;
-    return someApply([
-      ['min--moz-device-pixel-ratio:', min], // Use for FF 15- (See FF 16/18 release notes)
-      ['min-resolution:', min*pxPerIn, 'dpi'] // dpi queries are older than dppx
-    ], hasFeature);
+  function res(unit) {
+    return require('actual')('resolution', unit.valueOf(), one[unit])
   }
 
   /**
-   * Get or test resolution in "dpi" units.
-   * @param {number=} min  optional minimum value to test for
-   * @return {number|boolean}
+   * @return {number} dppx resolution a.k.a. devicePixelRatio
    */
-  function dpi(min) {
-    return null == min ? dppx()*pxPerIn : dppx(min/pxPerIn);
+  function ratio() {
+    if (typeof window == 'undefined') return 0 // mute lookup errors for `grunt test` tests
+    // devicePixelRatio: Webkit (Chrome/Android/Safari), Opera (Presto 2.8+), FF 18+
+    // logicalXDPI/logicalYDPI: IE6+ (Assuming 1 could suffice here)
+    return +window.devicePixelRatio || Math.sqrt(screen.deviceXDPI*screen.deviceYDPI)/one.dpi || 0
   }
 
-  /**
-   * Get or test resolution in "dpcm" units.
-   * @param {number=} min  optional minimum value to test for
-   * @return {number|boolean}
-   */
-  function dpcm(min) {
-    return null == min ? dppx()/pxPerCm : dppx(min*pxPerCm);
-  }
+  !function(o, fn) {
+    for (var k in o) o.hasOwnProperty(k) && fn(k)
+  }(one, function(unit) {
+    /**
+     * @return {number} resolution in `unit` units
+     */
+    res[unit] = function() {
+      return ratio()*one[unit]
+    }
+  })
 
-  return {'dppx':dppx, 'dpcm':dpcm, 'dpi':dpi};
+  return res
 });
