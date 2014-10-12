@@ -4,12 +4,6 @@
   var res = common ? require('../src') : root[name]
   var precision = 1/20
 
-  if (typeof window != 'undefined') {
-    aok.prototype.pass = 'ok'
-    aok.prototype.fail = 'FAIL'
-    if (![].some) aok.prototype.express = aok.info
-  }
-
   function isNatural(n) {
     return typeof n == 'number' && n >= 0 && n === n
   }
