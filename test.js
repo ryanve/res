@@ -22,16 +22,15 @@
     var aNum = actual('resolution', unit)
     aok(unit + ' return', isNatural(rNum))
     if (rNum && aNum) aok(unit + ' accuracy', isClose(rNum, aNum))
-    aok.info('res ' + unit + ': ' + rNum)
-    aok.info('actual ' + unit + ': ' + aNum)
+    sos.info('res ' + unit + ': ' + rNum)
+    sos.info('actual ' + unit + ': ' + aNum)
     sos('groupEnd')
   })
 
-  aok('unitconversion', function() {
-    if (res.dpi() < res.dpcm()) return false
-    if (96*res.dppx() !== res.dpi()) return false
-    return isClose(2.54*res.dpcm(), res.dpi())
-  })
+  sos('group', 'unit conversion')
+  aok('dppx to dpi', isClose(96*res.dppx(), res.dpi()))
+  aok('dpcm to dpi', isClose(2.54*res.dpcm(), res.dpi()))
+  sos('groupEnd')
 
-  aok.log('All tests passed :)')
+  sos.log('All tests passed :)')
 }(this, 'res');
