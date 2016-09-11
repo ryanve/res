@@ -22,8 +22,8 @@
     var aNum = actual('resolution', unit)
     aok(unit + ' return', isNatural(rNum))
     if (rNum && aNum) aok(unit + ' accuracy', isClose(rNum, aNum))
-    sos.info('res ' + unit + ': ' + rNum)
-    sos.info('actual ' + unit + ': ' + aNum)
+    sos.info(unit, rNum, 'res')
+    sos.info(unit, aNum, 'actual')
     sos('groupEnd')
   })
 
