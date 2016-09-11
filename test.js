@@ -32,5 +32,5 @@
   aok('dpcm to dpi', isClose(2.54*res.dpcm(), res.dpi()))
   sos('groupEnd')
 
-  sos.log('All tests passed :)')
+  sos.info('All tests passed :)')
 }(this, 'res');
