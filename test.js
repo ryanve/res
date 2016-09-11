@@ -1,7 +1,7 @@
 !function(root, name) {
   var common = typeof module != 'undefined' && !!module.exports
   var aok = common ? require('aok') : root.aok
-  var res = common ? require('../src') : root[name]
+  var res = common ? require('./') : root[name]
   var precision = 1/20
 
   function isNatural(n) {
