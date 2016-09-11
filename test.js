@@ -4,7 +4,7 @@
   var sos = common ? require('sos') : root.sos
   var aok = common ? require('aok') : root.aok
   var res = common ? require('./') : root[name]
-  var precision = 1/20
+  var precision = 1/10
 
   function isNatural(n) {
     return typeof n == 'number' && n >= 0 && n === n
