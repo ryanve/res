@@ -1,17 +1,10 @@
 !function(root, name, make) {
-  if (typeof module != 'undefined' && module.exports) module.exports = make(require)
-  else root[name] = make(function(id) { return root[id] })
-}(this, 'res', function(require) {
+  if (typeof module != 'undefined' && module.exports) module.exports = make()
+  else root[name] = make()
+}(this, 'res', function() {
 
+  var res = {}
   var one = {'dppx':1, 'dpi':96, 'dpcm':96/2.54}
-
-  /**
-   * @param {string} unit CSS resolution unit like "dppx", "dpi", or "dpcm"
-   * @return {number} as measured by matchMedia by github.com/ryanve/actual
-   */
-  function res(unit) {
-    return require('actual')('resolution', unit.valueOf(), one[unit])
-  }
 
   /**
    * @return {number} dppx resolution a.k.a. devicePixelRatio

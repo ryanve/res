@@ -1,7 +1,7 @@
 {
   "name": "res",
   "description": "Device resolution detection module",
-  "version": "0.4.0-0",
+  "version": "0.4.0-1",
   "homepage": "https://github.com/ryanve/res",
   "license": "MIT",
   "author": "Ryan Van Etten",
@@ -20,11 +20,8 @@
     "type": "git",
     "url": "https://github.com/ryanve/res.git"
   },
-  "dependencies": {},
-  "optionalDependencies": {
-    "actual": "^0.2.0"
-  },
   "devDependencies": {
+    "actual": "^0.2.0",
     "aok": "^1.9.0",
     "jshint": "^2.9.3"
   },
