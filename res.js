@@ -3,32 +3,24 @@
   else root[name] = make()
 }(this, 'res', function() {
 
-  var res = {}
-  var one = {'dppx':1, 'dpi':96, 'dpcm':96/2.54}
+  var one = {dpi: 96, dpcm: 96 / 2.54}
 
-  /**
-   * @return {number} dppx resolution a.k.a. devicePixelRatio
-   */
-  function ratio() {
-    if (typeof window == 'undefined') return 0
+  function ie() {
+    return Math.sqrt(screen.deviceXDPI * screen.deviceYDPI) / one.dpi
+  }
+
+  function dppx() {
     // devicePixelRatio: Webkit (Chrome/Android/Safari), Opera (Presto 2.8+), FF 18+
-    // logicalXDPI/logicalYDPI: IE6+ (Assuming 1 could suffice here)
-    return +window.devicePixelRatio || Math.sqrt(screen.deviceXDPI*screen.deviceYDPI)/one.dpi || 0
+    return typeof window == 'undefined' ? 0 : +window.devicePixelRatio || ie() || 0
   }
 
-  /**
-   * @param {string} unit CSS resolution property name from `one`
-   */
-  function expose(unit) {
-    var conversion = one[unit];
-    res[unit] = 1 == conversion ? ratio : function() {
-      // convert resolution to `units` units
-      return ratio()*conversion
-    }
+  function dpcm() {
+    return dppx() * one.dpcm
   }
 
-  expose('dppx')
-  expose('dpcm')
-  expose('dpi')
-  return res
+  function dpi() {
+    return dppx() * one.dpi
+  }
+
+  return {'dppx': dppx, 'dpi': dpi, 'dpcm': dpcm}
 });
