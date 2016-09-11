@@ -7,9 +7,16 @@
   "author": "Ryan Van Etten",
   "keywords": [
     "device",
+    "screen",
+    "browser",
     "resolution",
     "detection",
-    "ender"
+    "responsive",
+    "device-pixel-ratio",
+    "ender",
+    "mobile",
+    "detect",
+    "dpr"
   ],
   "main": "res.js",
   "scripts": {
