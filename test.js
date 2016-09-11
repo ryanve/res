@@ -1,6 +1,7 @@
 !function(root, name) {
   var common = typeof module != 'undefined' && !!module.exports
   var actual = common ? require('actual') : root.actual
+  var sos = common ? require('sos') : root.sos
   var aok = common ? require('aok') : root.aok
   var res = common ? require('./') : root[name]
   var precision = 1/20
@@ -16,12 +17,14 @@
   }
 
   aok.pass(['dpi', 'dpcm', 'dppx'], function(unit) {
+    sos('group', unit)
     var rNum = res[unit]()
     var aNum = actual('resolution', unit)
     aok(unit + ' return', isNatural(rNum))
     if (rNum && aNum) aok(unit + ' accuracy', isClose(rNum, aNum))
     aok.info('res ' + unit + ': ' + rNum)
     aok.info('actual ' + unit + ': ' + aNum)
+    sos('groupEnd')
   })
 
   aok('unitconversion', function() {
@@ -29,6 +32,6 @@
     if (96*res.dppx() !== res.dpi()) return false
     return isClose(2.54*res.dpcm(), res.dpi())
   })
-  
+
   aok.log('All tests passed :)')
 }(this, 'res');

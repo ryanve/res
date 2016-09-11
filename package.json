@@ -30,7 +30,8 @@
   "devDependencies": {
     "actual": "^0.2.0",
     "aok": "^1.9.0",
-    "jshint": "^2.9.3"
+    "jshint": "^2.9.3",
+    "sos": "0.0.1"
   },
   "jshintConfig": {
     "asi": true,
