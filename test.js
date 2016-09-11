@@ -25,7 +25,7 @@
   })
 
   aok('unitconversion', function() {
-    if (res.dpi() < res.dpcm) return false
+    if (res.dpi() < res.dpcm()) return false
     if (96*res.dppx() !== res.dpi()) return false
     return isClose(2.54*res.dpcm(), res.dpi())
   })
