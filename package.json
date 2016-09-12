@@ -12,6 +12,7 @@
     "resolution",
     "detection",
     "responsive",
+    "retina",
     "device-pixel-ratio",
     "ender",
     "mobile",
