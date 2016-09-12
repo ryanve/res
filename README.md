@@ -1,20 +1,26 @@
 # res
-#### [CSS resolution](http://www.w3.org/TR/css3-values/#resolution) detection in JavaScript
+[CSS resolution](http://www.w3.org/TR/css3-values/#resolution) detection in JavaScript
+
+```sh
+npm install res --save
+```
 
 ## API
-<a name="methods"></a>
 
 <a name="dpi"></a>
-#### `res.dpi()`
-<b>@return</b> `number` resolution in [dpi](http://www.w3.org/TR/css3-values/#dpi)
+### `res.dpi()`
+- Get resolution in [dpi](http://www.w3.org/TR/css3-values/#dpi)
+- <b>@return</b> number
 
 <a name="dpcm"></a>
-#### `res.dpcm()`
-<b>@return</b> `number` resolution in [dpcm](http://www.w3.org/TR/css3-values/#dpcm)
+### `res.dpcm()`
+- Get resolution in [dpcm](http://www.w3.org/TR/css3-values/#dpcm)
+- <b>@return</b> number
 
 <a name="dppx"></a>
-#### `res.dppx()`
-<b>@return</b> `number` resolution in [dppx](http://www.w3.org/TR/css3-values/#dppx)
+### `res.dppx()`
+- Get resolution in [dppx](http://www.w3.org/TR/css3-values/#dppx)
+- <b>@return</b> number
 
 ## Usage
 
@@ -27,7 +33,7 @@ res.dpcm() // 37.79527559055118
 
 ### Technical notes
 - [dppx](http://www.w3.org/TR/css3-values/#dppx) equals [`devicePixelRatio`](http://dev.w3.org/csswg/cssom-view/#dom-window-devicepixelratio)
-- <b>dppx</b> is the preferred resolution unit for web design
+- [dppx](http://www.w3.org/TR/css3-values/#dppx) is the preferred resolution unit for web design
 - [User zoom affects resolution](../../issues/1)
 
 ### Use with care
@@ -56,7 +62,7 @@ res.dpcm() // 37.79527559055118
 </table>
 
 ## Compatibility
-#### Browsers with resolution detectable by [res](#res)
+#### Browsers with resolution detectable by <b>res</b>
 
 - Webkit (Chrome/Safari/Android)
 - Firefox 18+
@@ -66,11 +72,11 @@ res.dpcm() // 37.79527559055118
 **Methods return `0` where undetectable.**
 
 ## Related resources
+- [actual](https://github.com/ryanve/actual)
 - [CSS4 resolution](http://dev.w3.org/csswg/mediaqueries4/#resolution)
 - [CSS3 resolution](http://w3.org/TR/css3-values/#resolution) and [units](http://w3.org/TR/css3-values/#absolute-lengths)
-- [Resolution lab](http://ryanve.com/lab/resolution/)
 - [Demo media queries](http://ryanve.com/lab/@media/#mq-resolution)
-- [ryanve/actual](https://github.com/ryanve/actual)
+- [Resolution lab](http://ryanve.com/lab/resolution/)
 
 ## License
 MIT

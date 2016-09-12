@@ -1,43 +1,50 @@
 {
   "name": "res",
   "description": "Device resolution detection module",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "homepage": "https://github.com/ryanve/res",
   "license": "MIT",
   "author": "Ryan Van Etten",
-  "keywords": ["device", "resolution", "detection", "ender"],
+  "keywords": [
+    "device",
+    "screen",
+    "browser",
+    "resolution",
+    "detection",
+    "responsive",
+    "retina",
+    "device-pixel-ratio",
+    "ender",
+    "mobile",
+    "detect",
+    "dpr"
+  ],
   "main": "res.js",
+  "scripts": {
+    "pretest": "jshint res.js && jshint test.js",
+    "test": "node test.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ryanve/res.git"
   },
-  "dependencies": {},
-  "optionalDependencies": {
-    "actual": "^0.2.0"
-  },
   "devDependencies": {
+    "actual": "^0.2.0",
     "aok": "^1.9.0",
-    "universal": "^0.1.0",
-    "grunt-contrib-uglify": "^0.6.0",
-    "grunt-contrib-concat": "^0.4.0",
-    "grunt-contrib-jshint": "^0.10.0"
+    "jshint": "^2.9.3",
+    "sos": "0.0.1"
   },
   "jshintConfig": {
     "asi": true,
     "boss": true,
     "browser": true,
-    "debug": false,
-    "devel": false,
     "eqnull": true,
-    "evil": false,
     "expr": true,
-    "globals": {},
-    "jquery": false,
     "lastsemic": true,
     "latedef": "nofunc",
     "laxcomma": true,
     "maxcomplexity": 10,
-    "maxerr": 10,
+    "maxerr": 4,
     "maxlen": 115,
     "maxparams": 4,
     "node": true,
@@ -45,7 +52,6 @@
     "supernew": true,
     "trailing": true,
     "undef": true,
-    "unused": true,
-    "worker": false
+    "unused": true
   }
 }
